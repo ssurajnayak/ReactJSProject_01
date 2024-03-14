@@ -1,58 +1,14 @@
-import { useState } from "react";
 import Header from "./Components/Header/Header";
-import Coreconcepts from "./Components/CoreConcepts";
-import { CORE_CONCEPTS } from "./data";
-import Tabbutton from "./Components/TabButton";
-import {EXAMPLES} from "./data";
+import CoreConcepts from "./Components/CoreConcepts";
+import Examples from "./Components/Examples";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState();
-
-  function handleSelect(selectedButton){
-    setSelectedTopic(selectedButton);
-    console.log(selectedTopic);
-  }
   return (
     <div>
       <Header />
       <main>
-        <section id='core-concepts'>
-          <h2>Core Concepts!</h2>
-          <ul>
-            {CORE_CONCEPTS.map((conceptItem)=><Coreconcepts key={conceptItem.title}
-            {...conceptItem}/>)}
-            {/* <Coreconcepts 
-            {...CORE_CONCEPTS[0]}/>
-            <Coreconcepts 
-            {...CORE_CONCEPTS[1]}
-            />
-            <Coreconcepts 
-            {...CORE_CONCEPTS[2]} 
-            />
-            <Coreconcepts 
-            {...CORE_CONCEPTS[3]} 
-            /> */}
-          </ul>
-        </section>
-        <section id="examples">
-          <h2>Examples</h2>
-          <menu>
-            <Tabbutton isSelected={selectedTopic==='components'} onSelect={()=>handleSelect('components')}>Components</Tabbutton>
-            <Tabbutton isSelected={selectedTopic==='jsx'} onSelect={()=>handleSelect('jsx')}>JSX</Tabbutton>
-            <Tabbutton isSelected={selectedTopic==='props'} onSelect={()=>handleSelect('props')}>Props</Tabbutton>
-            <Tabbutton isSelected={selectedTopic==='state'} onSelect={()=>handleSelect('state')}>State</Tabbutton>
-          </menu>
-          {!selectedTopic? <p>Please select a topic.</p>: <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>
-              {EXAMPLES[selectedTopic].code}
-              </code>
-            </pre>
-          </div>}
-          
-        </section>
+        <CoreConcepts />
+        <Examples />
       </main>
     </div>
   );
